@@ -3,12 +3,29 @@
 namespace ConsoleAppProject.App01
 {
     /// <summary>
-    /// Please describe the main features of this App
+    /// This app was built as a converter for unite of measurement system
     /// </summary>
     /// <author>
-    /// Derek version 0.1
+    /// Vinicius Do amaral
     /// </author>
     public class DistanceConverter
     {
+        public void Run()
+        {
+            Outputheading();
+        
+        }
+
+        private void Outputheading()
+        {
+            Console.WriteLine("    ===========================  ");
+            Console.WriteLine("     App01; Distance converter   ");
+            Console.WriteLine("       By Vinicius Do Amaral     ");
+            Console.WriteLine("    ===========================  ");
+
+
+        }
+
+
     }
 }
