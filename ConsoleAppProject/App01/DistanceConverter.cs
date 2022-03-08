@@ -15,6 +15,7 @@ namespace ConsoleAppProject.App01
 
 
         private double feet;
+        private double metres;
 
         public bool Value { get; private set; }
 
@@ -25,10 +26,38 @@ namespace ConsoleAppProject.App01
             InputMiles();
             CalculateFeet();
             OutputFeet();
+            Inputfeet();
             OutputMiles();
             CalculateMiles();
-
+            Inputmetres();
+            CalculateMetres();
+            Outputmetres();
         
+        }
+
+        private void Outputmetres()
+        {
+            Console.WriteLine();
+            Console.WriteLine("  " + metres + " metres is " + miles + " miles ");
+            Console.WriteLine();
+        }
+
+        private void CalculateMetres()
+        {
+            miles = metres * 1609.34;
+        }
+
+
+        /// <summary>
+        /// Output a message to the user to enter the miles
+        /// and read it in as a string and convert it to a double
+        /// </summary>
+
+        private void Inputmetres()
+        {
+            Console.Write(" Enter the distance in miles >  ");
+            string value = Console.ReadLine();
+            metres = (int)Convert.ToDouble(value);
         }
 
         private void OutputMiles()
