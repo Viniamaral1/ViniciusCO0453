@@ -19,6 +19,15 @@ namespace ConsoleAppProject.App01
 
         public bool Value { get; private set; }
 
+        internal void run()
+        {
+            DistanceConverter App01 = new DistanceConverter();
+            App01.Run();
+
+
+
+        }
+
         public void Run()
         {
             Outputheading();

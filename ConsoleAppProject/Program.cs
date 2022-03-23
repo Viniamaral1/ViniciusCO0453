@@ -1,6 +1,9 @@
 ﻿using ConsoleAppProject.App01;
+using ConsoleAppProject.App02;
 using ConsoleAppProject.App03;
 using ConsoleAppProject.Helpers;
+using System.Linq;
+
 using System;
 
 namespace ConsoleAppProject
@@ -15,22 +18,75 @@ namespace ConsoleAppProject
     /// </summary>
     public static class Program
     {
-        private static object app01;
+        private static int cantryagain;
 
         public static void Main(string[] args)
         {
+
+          
+
             Console.ForegroundColor = ConsoleColor.Yellow;
 
             Console.WriteLine();
             Console.WriteLine(" =================================================");
             Console.WriteLine("    BNU CO453 Applications Programming 2021-2022! ");
-            Console.WriteLine("        by Vinicius                                  ");
+            Console.WriteLine("        by Derek                                  ");
             Console.WriteLine(" =================================================");
             Console.WriteLine();
 
-            DistanceConverter converter = new DistanceConverter();
-           
-            converter.Run();
+
+            Console.WriteLine(" Pleaes informe the App you`d like to use");
+            Console.WriteLine("        Distance converter (1)      ");
+            Console.WriteLine("          BMI calculator   (2)      ");
+            Console.WriteLine("          Student Grades   (3)      ");
+
+            string choice = Console.ReadLine();
+            if (Double.TryParse(choice, out _))
+            {
+
+               
+
+
+                
+                
+
+                double option = Convert.ToDouble(choice);
+                if (option == 1)
+                {
+                    DistanceConverter App01 = new DistanceConverter();
+                    App01.Run();
+                }
+                else if (option == 2)
+                {
+                    BMI app02 = new BMI();
+                    app02.Run();
+                }
+                else if (option == 3)
+                {
+                    StudentGrades App03 = new StudentGrades();
+                    App03.RUN();
+                }
+                else
+                {
+                    Console.WriteLine("Incorrect option, please try again");
+                    Tryagain();
+                }
+            }
+        }
+
+        private static void Tryagain()
+        {
+
+            Myfunction();
+            cantryagain = 1;
+
+        }
+
+        private static void Myfunction()
+        {
+
+
         }
     }
 }
+
