@@ -35,7 +35,7 @@ namespace ConsoleAppProject
             Console.WriteLine();
 
 
-            Console.WriteLine(" Pleaes informe the App you`d like to use");
+            Console.WriteLine(" Pleaes informe the App you`d like to use > ");
             Console.WriteLine("        Distance converter (1)      ");
             Console.WriteLine("          BMI calculator   (2)      ");
             Console.WriteLine("          Student Grades   (3)      ");
@@ -64,7 +64,7 @@ namespace ConsoleAppProject
                 else if (option == 3)
                 {
                     StudentGrades App03 = new StudentGrades();
-                    App03.RUN();
+                    App03.Run();
                 }
                 else
                 {

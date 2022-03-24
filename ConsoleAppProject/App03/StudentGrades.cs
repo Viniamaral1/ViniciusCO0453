@@ -1,237 +1,223 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using ConsoleAppProject.Helpers;
-using System.Linq;
 
 namespace ConsoleAppProject.App03
 {
     /// <summary>
-    /// At the moment this class just tests the
-    /// Grades enumeration names and descriptions
+    /// This app shows  the student grades
     /// </summary>
+    /// <author>
+    /// Vinicius Do Amaral version 1.0
+    /// </author>
     public class StudentGrades
     {
-        private const string Format = "{0} -- {1} -- {2} -- {3} -- {4}";
+        public const int Number_of_Students = 10;
         private readonly int percentage;
 
+        public string[] Students { get; set; }
+        public int[] Marks { get; set; }
+        public Grades[] Grades { get; set; }
+        public int[] Gradeprofile { get; set; }
 
-        public string Name { get; set; }
+        public int Total { get; set; }
+        public double Mean { get; set; }
+        public int Min { get; set; }
+        public int Max { get; set; }
 
-        private string program;
-
-        public string GetProgram()
-        {
-            return program;
-        }
-
-        public void SetProgram(string value)
-        {
-            program = value;
-        }
-
-        public StudentGrades(string program)
-        {
-            this.SetProgram(program);
-        }
-
+        /// <summary>
+        /// assign stuff to stuff
+        /// </summary>
         public StudentGrades()
         {
+            Students = new string[Number_of_Students] { "Jon", "Marly", "Vini", "Jack", "Nile", "Tinno"
+                , "Joseph", "Alex", "Sebastian", "Josh" };
+            Marks = new int[Number_of_Students] { 10, 20, 30, 40, 50, 60, 70, 80, 90, 100 };
+            Grades = new Grades[Number_of_Students] { App03.Grades.F, App03.Grades.F, App03.Grades.F, App03.Grades.D, App03.Grades.C, App03.Grades.B, App03.Grades.A, App03.Grades.A, App03.Grades.A, App03.Grades.A };
+            Gradeprofile = new int[5];
         }
 
-        public int Mark { get; set; }
-        public int Grade { get; set; }
-        public object Students { get => students; set => students = value; }
-
-        
-        private object students;
-
-        
-        
-            
-
-            
-
-
-        public override string ToString()
-        {
-            return string.Format(Format, Name, GetProgram(), Mark, Grade);
-        }
+        /// <summary>
+        /// System to Run the heading and menu
+        /// </summary>
         public void Run()
         {
             Outputheading();
-            CaculateGrades();
+            
+
+
         }
 
+        
+
+        /// <summary>
+        /// I have added the menu and Heading together
+        /// </summary>
         private void Outputheading()
         {
             Console.WriteLine("    ===========================  ");
-            Console.WriteLine("     App03;Students Grade  ");
+            Console.WriteLine("     App03: Students Grade  ");
             Console.WriteLine("       By Vinicius Do Amaral     ");
             Console.WriteLine("    ===========================  ");
+            Console.WriteLine("    Select the desirable option >");
+            Console.WriteLine("     1 Input Marks      ");
+            Console.WriteLine("     2 Output Marks             ");
+            Console.WriteLine("     3 Output Staks              ");
+            Console.WriteLine("     4 Output Grade Profile      ");
+            Console.WriteLine("     5 Exit              ");
+            Console.WriteLine("     =========================== ");
+
+
+            string choice = Console.ReadLine();
+            if (Double.TryParse(choice, out _))
+
+            {
+                double option = Convert.ToDouble(choice);
+                if (option == 1)
+                {
+                    InputMarks();
+                    
+                }
+                else if (option == 2)
+                {
+                    OutputMarks();
+                    
+                }
+                else if (option == 3)
+                {
+                   
+                   
+                    
+                   
+                }
+                else if (option == 4)
+                {
+                    CalculateGradeProfile();
+                    OutputGradeProfile();
+                    
+                }
+                else if (option == 5)
+                {
+                    Console.WriteLine(" You have exited the program");
+                }
+                else
+                {
+                    Console.WriteLine(" That was not an option");
+                    
+                }
+            }
+            else
+            {
+                Console.WriteLine(" Use a number to pick your choice ");
+                
+            }
         }
 
-        internal void RUN()
+        /// <summary>
+        /// Input for marks
+        /// </summary>
+        private void InputMarks()
         {
-           StudentGrades App03 = new StudentGrades();
-            App03.RUN();
+            for (int i = 0; i < Number_of_Students; i++)
+            {
+                Marks[i] = (int)ConsoleHelper.InputNumber($" Pls enter mark for {Students[i]} ", 0, 100);
+                Grades[i] = ConvertMarktoGrade(Marks[i]);
+            }
         }
 
-        private void CaculateGrades()
+        /// <summary>
+        /// Conversion of into Grades
+        /// </summary>
+        public Grades ConvertMarktoGrade(int mark)
         {
-            if (percentage <= 35)
+            if (mark < 40)
+            {
+                return App03.Grades.F;
+            }
+            else if (mark < 50)
+            {
+                return App03.Grades.D;
+            }
+            else if (mark < 60)
+            {
+                return App03.Grades.C;
+            }
+            else if (mark < 70)
+            {
+                return App03.Grades.B;
+            }
+            else
+            {
+                return App03.Grades.A;
+            }
+
+             if (mark <= 35)
             {
                 Console.WriteLine("Grade is F");
             }
-            else if (percentage >= 40 && percentage <= 49)
+            else if (mark >= 40 && percentage <= 49)
             {
                 Console.WriteLine("Grade is D");
             }
-            else if (percentage >= 50 && percentage <= 59)
+            else if (mark >= 50 && percentage <= 59)
             {
                 Console.WriteLine("Grade is C");
             }
-            else if (percentage >= 60 && percentage <= 69)
+            else if (mark >= 60 && percentage <= 69)
             {
                 Console.WriteLine("Grade is B");
             }
-            else if (percentage >= 70 && percentage <= 100)
+            else if (mark >= 70 && percentage <= 100)
             {
                 Console.WriteLine("Grade is A");
+
             }
+
         }
-         
 
-
-        class Program
+        /// <summary>
+        /// The marks output
+        /// </summary>
+        private void OutputMarks()
         {
-
-
-            private static void Student ()
+            for (int i = 0; i < Number_of_Students; i++)
             {
-                Student sOne = new Student()
-                {
-                    
-                    Name = "Lara",
-                    Program = "Computing",
-                    Mark = "49",
-                    Grade = "D"
-                };
+                Console.WriteLine($" {Students[i]} mark is {Marks[i]} and grade is {Grades[i]}");
+            }
+        }
 
-                Student sTwo = new Student()
-                {
-                    Name = "Lianne",
-                    Program = "Nurse",
-                    Mark = "79",
-                    Grade = "A"
-                };
+        
 
-                Student sThree = new Student()
-                {
-                    Name = "Jonh",
-                    Program = "Medicine",
-                    Mark = "66",
-                    Grade = "B"
-                };
+        
 
-                Student sFour = new Student()
-                {
-                    Name = "Donald",
-                    Program = "Economic",
-                    Mark = "55",
-                    Grade = "C"
-                };
+       
 
-                Student sFive = new Student()
-                {
-                    Name = "Silvia",
-                    Program = "Music",
-                    Mark = "41",
-                    Grade = "D"
-                };
+        /// <summary>
+        /// calculates the precentage of students how got each grade 
+        /// </summary>
+        public void CalculateGradeProfile()
+        {
+            foreach (Grades grade in Grades)
+            {
+                Gradeprofile[(int)grade] += 1;
+            }
 
-                Student sSix = new Student()
-                {
-                    Name = "Eli",
-                    Program = "Art",
-                    Mark = "33",
-                    Grade = "F"
-                };
+            for (int i = 0; i < Gradeprofile.Length; i++)
+            {
+                Gradeprofile[i] = Gradeprofile[i] * 100 / Number_of_Students;
+            }
+        }
 
-                Student sSeven = new Student()
-                {
-                    Name = "Jimmie",
-                    Program = "Coach",
-                    Mark = "69",
-                    Grade = "B"
-                };
-
-                Student sEight = new Student()
-                {
-                    Name = "Max",
-                    Program = "Cyber security",
-                    Mark = "47",
-                    Grade = "D"
-                };
-
-                Student sNine = new Student()
-                {
-                    Name = "Vini",
-                    Program = "A.I",
-                    Mark = "100",
-                    Grade = "A"
-                };
-
-                Student sTen = new Student()
-                {
-                    Name = "Josh",
-                    Program = "Aviation",
-                    Mark = "100",
-                    Grade = "A"
-                };
-
-                List<Student> StudentList = new List<Student>
-                {
-                    sOne,
-                    sTwo,
-                    sThree,
-                    sFour,
-                    sFive,
-                    sSix,
-                    sSeven,
-                    sEight,
-                    sNine,
-                    sTen,
-
-                };
-
-                Student s = StudentList[0];
-
-
-                Console.WriteLine("Student Id  is {0}, Student Name is {1}, Student Gender is {2}, Student Marks is {3}", s.Name, s.Program, s.Mark, s.Grade);
+        /// <summary>
+        /// outputs the grade profile
+        /// </summary>
+        private void OutputGradeProfile()
+        {
+            foreach (Grades val in Enum.GetValues(typeof(Grades)))
+            {
+                Console.WriteLine($" The percentage of students that got {val} is {Gradeprofile[(int)val]} %");
             }
         }
     }
-
-    internal class Student
-    {
-        public string Name { get; internal set; }
-        public string Program { get; internal set; }
-        public string Mark { get; internal set; }
-        public string Grade { get; internal set; }
-    }
-
-   
 }
-
-
-
-     
-      
-      
-
-     
-
-
-
